@@ -31,13 +31,13 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onPause() {
-        super.onStop();
+        super.onPause();
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
 
     @Override
     public void onStart() {
-        super.onResume();
+        super.onStart();
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
 }
