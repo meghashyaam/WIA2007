@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="bottomnav" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="colorSecondaryContainer">#50A7EE00</item>
+        <item name="android:textAlignment">center</item>
+
+
+
+
+
+    </style>
+</resources>

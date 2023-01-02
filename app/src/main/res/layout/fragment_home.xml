@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+    android:scrollbarSize="0dp"
+    android:scrollbars="none"
+    tools:context=".HomeFragment">
+
+    <Button
+        android:id="@+id/btnHalls"
+        android:layout_width="129dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="10dp"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/btnCourts"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnStudyCubes"
+        app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="411dp"
+        android:layout_height="151dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="411dp"
+        android:layout_height="151dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/browselocation" />
+
+    <Button
+        android:id="@+id/btnCourts"
+        android:layout_width="129dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnHalls"
+        app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
+
+    <TextView
+        android:id="@+id/browsespaces"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Browse spaces"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSlogan" />
+
+    <TextView
+        android:id="@+id/browselocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:text="Browse locations"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textStudyCube" />
+
+    <TextView
+        android:id="@+id/textStudyCube"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Study cubes"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStudyCubes" />
+
+    <TextView
+        android:id="@+id/textHall"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="10dp"
+        android:text="Halls"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textStudyCube"
+        app:layout_constraintTop_toBottomOf="@+id/btnHalls" />
+
+    <TextView
+        android:id="@+id/textCourts"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="68dp"
+        android:text="Courts"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCourts" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="411dp"
+        android:layout_height="151dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <Button
+        android:id="@+id/btnStudyCubes"
+        android:layout_width="129dp"
+        android:layout_height="237dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/btnHalls"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
+
+    <TextView
+        android:id="@+id/textSlogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:lineSpacingMultiplier="0.85"
+        android:text="@string/slogan"
+        android:textColor="#000000"
+        android:textSize="70sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textSlogan2"
+        android:layout_width="366dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="-10dp"
+        android:background="#bdff22"
+        android:gravity="bottom"
+        android:lineSpacingMultiplier="0.85"
+        android:text="effortlessly"
+        android:textColor="#000000"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textSlogan"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/botomspacing"
+        android:layout_width="432dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
