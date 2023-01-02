@@ -28,4 +28,18 @@ public class HomeFragment extends Fragment {
         super.onStop();
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
+
+    @Override
+    public void onPause() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onResume();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+    }
+
+
 }
