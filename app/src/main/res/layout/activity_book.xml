@@ -4,61 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:transitionGroup="false"
+    tools:context=".BookActivity">
 
+    <!-- TOOLBAR BACKGROUND COLOR IS ONLY TO INDICATE THE SIZE. REMOVE ONCE DONE CODING -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="#A7EE00"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/bigheader"
+        android:background="#A7EE00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:title=" "
+        app:titleCentered="false"
+        app:titleMargin="0dp"
         app:titleTextAppearance="@style/bigheader"
         app:titleTextColor="#000000" />
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
+    <TextView
+        android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:defaultFocusHighlightEnabled="false"
-        android:theme="@style/bottomnav"
-        app:backgroundTint="#FFFFFF"
-        app:elevation="3dp"
-        app:itemHorizontalTranslationEnabled="false"
-        app:labelVisibilityMode="labeled"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="New booking"
+        android:textColor="#000000"
+        android:textSize="70dp"
+        android:lineSpacingMultiplier="0.85"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
+
+
+    <TextView
+        android:id="@+id/textBook2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="book 2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:menu="@menu/bottom_nav_menu" />
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
-
-        <fragment
-            android:id="@+id/fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
-            app:navGraph="@navigation/mobile_navigation" />
-
-
-    </ScrollView>
-
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
