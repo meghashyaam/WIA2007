@@ -152,7 +152,7 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBookToday" />
 
     <TextView
         android:id="@+id/textBookRequest"
@@ -165,10 +165,10 @@
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonStartDatePicker" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/buttonBookTommorow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -178,11 +178,11 @@
         android:text="Tommorow"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/buttonBookToday"
         app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonBookToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -196,7 +196,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/buttonStartDatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -210,7 +210,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/buttonDatePicker"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -225,11 +225,11 @@
         app:iconPadding="0dp"
         app:iconSize="24dp"
         app:iconTint="#000000"
-        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintStart_toEndOf="@+id/buttonBookTommorow"
         app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/buttonEndDatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -239,11 +239,11 @@
         android:text="End"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/iconRight"
         app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/buttonSpaceVacancy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -254,16 +254,16 @@
         android:text="Vacancy"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintStart_toEndOf="@+id/buttonEndDatePicker"
         app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iconRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintStart_toEndOf="@+id/buttonStartDatePicker"
         app:layout_constraintTop_toBottomOf="@+id/textPickaTime"
         app:srcCompat="@drawable/ic_outline_arrow_forward_24" />
 
