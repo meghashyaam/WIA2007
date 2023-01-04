@@ -8,6 +8,22 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultFocusHighlightEnabled="false"
+        android:theme="@style/bottomnav"
+        app:backgroundTint="#FFFFFF"
+        app:elevation="3dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:menu="@menu/bottom_nav_menu" />
+
     <ImageButton
         android:id="@+id/BtnEdit"
         android:layout_width="wrap_content"
@@ -46,8 +62,8 @@
         android:id="@+id/IVProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="103dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -56,8 +72,8 @@
         android:id="@+id/TVCollege"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="103dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
         android:text="8th Residential College"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
