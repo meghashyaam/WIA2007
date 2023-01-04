@@ -216,7 +216,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:autoText="false"
         android:background="@drawable/circle_outline"
         android:contextClickable="false"
         android:includeFontPadding="false"
@@ -242,17 +241,18 @@
         app:layout_constraintStart_toEndOf="@+id/iconRight"
         app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSpaceVacancy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        android:background="@drawable/button_style"
-        android:backgroundTint="#000000"
+        android:background="@drawable/edit_text_outline_red"
+        android:clickable="false"
         android:text="Vacancy"
         android:textColor="#000000"
+        android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/buttonEndDatePicker"
         app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />

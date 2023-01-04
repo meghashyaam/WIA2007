@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewCheckmark"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="200dp"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textBookingComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -28,7 +28,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCheckmark" />
 
     <Button
         android:id="@+id/buttonCompleteReturn"
