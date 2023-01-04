@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/TV8thResidentialCollege"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="68dp"
+        android:lineSpacingMultiplier="0.85"
+        android:text="8th Residential College"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-        android:id="@+id/btnHalls4"
+        android:id="@+id/btnHalls8"
         android:layout_width="194dp"
         android:layout_height="147dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="36dp"
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,28 +31,54 @@
         app:layout_constraintStart_toEndOf="@+id/btnStudyCubes"
         app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
 
+    <Button
+        android:id="@+id/btnHalls7"
+        android:layout_width="194dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="36dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toStartOf="@+id/btnCourts"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnStudyCubes"
+        app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
+
+    <Button
+        android:id="@+id/btnHalls6"
+        android:layout_width="194dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="240dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toStartOf="@+id/btnCourts"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnStudyCubes"
+        app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
+
     <TextView
-        android:id="@+id/TVResidentialColleges2"
+        android:id="@+id/TVStudyCubes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="12dp"
-        android:text="Residential colleges"
+        android:layout_marginBottom="4dp"
+        android:text="Study cubes"
         android:textColor="#000000"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnHalls1"
+        app:layout_constraintBottom_toTopOf="@+id/btnHalls6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textStudyCube" />
 
     <Button
-        android:id="@+id/btnHalls2"
+        android:id="@+id/btnHalls5"
         android:layout_width="194dp"
         android:layout_height="147dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="272dp"
+        android:layout_marginBottom="240dp"
         android:text="Button"
         app:layout_constraintBottom_toTopOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,70 +86,20 @@
         app:layout_constraintStart_toEndOf="@+id/btnStudyCubes"
         app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
 
-    <Button
-        android:id="@+id/btnHalls1"
-        android:layout_width="194dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="272dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toStartOf="@+id/btnCourts"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnStudyCubes"
-        app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
-
-    <Button
-        android:id="@+id/btnHalls3"
-        android:layout_width="194dp"
-        android:layout_height="147dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="68dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toStartOf="@+id/btnCourts"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnStudyCubes"
-        app:layout_constraintTop_toBottomOf="@+id/browsespaces" />
-
     <TextView
-        android:id="@+id/TVOtherLocations"
+        android:id="@+id/TVHalls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:text="Other study locations"
+        android:text="Halls"
         android:textColor="#000000"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnHalls3"
+        app:layout_constraintBottom_toTopOf="@+id/btnHalls7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textStudyCube" />
-
-    <TextView
-        android:id="@+id/TVStudyCube"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="60dp"
-        android:lineSpacingMultiplier="0.85"
-        android:text="Study cube"
-        android:textColor="#000000"
-        android:textSize="70sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnBack4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
-        android:background="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -128,4 +116,16 @@
         app:layout_constraintStart_toStartOf="parent"
 
         app:menu="@menu/bottom_nav_menu" />
+
+    <ImageButton
+        android:id="@+id/btnBack5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
