@@ -23,15 +23,7 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Button button = view.findViewById(R.id.btnStudyCubes);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Open the activity here
-                Intent intent = new Intent(getActivity(), BookActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         // Inflate the layout for this fragment
         return view;
