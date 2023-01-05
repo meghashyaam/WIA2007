@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="84dp"
-        android:background="@drawable/edit_text_outline"
+        android:background="@drawable/textfield_style"
         android:ems="10"
         android:hint="username"
         android:inputType="textPersonName"
@@ -45,7 +45,7 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/edit_text_outline"
+        android:background="@drawable/textfield_style"
         android:ems="10"
         android:hint="email"
         android:inputType="textEmailAddress"
@@ -66,7 +66,7 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/edit_text_outline"
+        android:background="@drawable/textfield_style"
         android:ems="10"
         android:hint="matric ID"
         android:inputType="textPersonName"
@@ -83,13 +83,12 @@
         app:layout_constraintWidth_percent="0.9" />
 
 
-
     <EditText
         android:id="@+id/editTextSignUpPassword"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/edit_text_outline"
+        android:background="@drawable/textfield_style"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
