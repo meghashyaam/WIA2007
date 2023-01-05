@@ -6,6 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
+    <TextView
+        android:id="@+id/TVAskName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:text="Active Booking"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCollege" />
+
+    <TextView
+        android:id="@+id/TVAskName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:text="History"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LLReceipt" />
+
     <Button
         android:id="@+id/btnSettings"
         android:layout_width="64dp"
@@ -73,17 +97,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="400dp"
-        android:layout_height="304dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="10dp"
-        android:text="Button"
+    <LinearLayout
+        android:id="@+id/LLReceipt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_outline"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCompleteReturn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCollege" />
+        app:layout_constraintTop_toBottomOf="@+id/TVAskName2"
+        app:layout_constraintWidth_percent="0.9">
+
+        <TextView
+            android:id="@+id/TVBookSpace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_grid_on_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Space"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TVBookLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_location_on_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Location"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TVBookDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_calendar_month_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Date"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TVBookTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_access_time_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Time"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
