@@ -5,12 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/bigheader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:title=" "
+        app:titleCentered="false"
+        app:titleMargin="0dp"
+        app:titleTextAppearance="@style/bigheader"
+        app:titleTextColor="#000000" />
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:lineSpacingMultiplier="0.85"
+        android:maxLines="2"
+        android:text="Edit Profile"
+        android:textColor="#000000"
+        android:textSize="70dp"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
+
+    <ImageView
+        android:id="@+id/imagePFP2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        app:srcCompat="@drawable/ic_outline_account_circle_24"
+        tools:src="@tools:sample/avatars[1]" />
+
     <EditText
         android:id="@+id/ETName"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="256dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_outline"
         android:ems="10"
         android:hint="name"
@@ -21,19 +62,17 @@
         android:textSize="20sp"
 
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textHello"
+        app:layout_constraintTop_toBottomOf="@+id/TVAskName"
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
         android:id="@+id/ETCollege"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_outline"
         android:ems="10"
         android:hint="residential college number"
@@ -44,10 +83,10 @@
         android:textSize="20sp"
 
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVAskCollege"
         app:layout_constraintWidth_percent="0.9" />
 
     <Button
@@ -67,24 +106,11 @@
         app:layout_constraintWidth_percent="0.9" />
 
     <TextView
-        android:id="@+id/TVEditProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
-        android:lineSpacingMultiplier="0.85"
-        android:text="Edit Profile"
-        android:textColor="#000000"
-        android:textSize="70sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/TVAskCollege"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
         android:text="Residential College"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -95,35 +121,12 @@
         android:id="@+id/TVAskName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
         android:text="Name"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVEditProfile" />
-
-    <ImageButton
-        android:id="@+id/BtnProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="130dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVEditProfile"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageButton
-        android:id="@+id/BtnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
-        android:background="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePFP2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
