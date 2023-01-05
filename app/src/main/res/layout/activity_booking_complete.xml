@@ -45,4 +45,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.9" />
 
+    <LinearLayout
+        android:id="@+id/LLReceipt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_outline"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCompleteReturn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textBookingComplete"
+        app:layout_constraintWidth_percent="0.9">
+
+        <TextView
+            android:id="@+id/TVBookSpace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_grid_on_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Space"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TVBookLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_location_on_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Location"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TVBookDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_calendar_month_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Date"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/TVBookTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_outline_access_time_24"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Time"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
