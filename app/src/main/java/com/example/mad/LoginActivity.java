@@ -2,6 +2,7 @@ package com.example.mad;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -31,6 +32,16 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void goToSignUp(View view) {
+        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToForgotPassword(View view) {
+        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 
 

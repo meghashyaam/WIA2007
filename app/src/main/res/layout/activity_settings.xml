@@ -38,46 +38,47 @@
         app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:text="About"
-        android:textColor="#000000"
-        app:icon="@drawable/ic_outline_info_24"
-        app:iconTint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
-
-    <Button
         android:id="@+id/button3"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="goToReportDamage"
+        android:paddingStart="30dp"
         android:text="Report Damage"
+        android:textAlignment="textStart"
         android:textColor="#000000"
+        android:textSize="16sp"
         app:icon="@drawable/ic_outline_report_problem_24"
+        app:iconPadding="30dp"
+        app:iconSize="24dp"
         app:iconTint="#000000"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
-        app:layout_constraintVertical_chainStyle="spread" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintWidth_percent="0.8" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="100dp"
+        android:onClick="goAppFeedback"
+        android:paddingStart="30dp"
         android:text="App Feedback"
+        android:textAlignment="textStart"
         android:textColor="#000000"
+        android:textSize="16sp"
         app:icon="@drawable/ic_outline_feedback_24"
+        app:iconPadding="30dp"
+        app:iconSize="24dp"
         app:iconTint="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintWidth_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

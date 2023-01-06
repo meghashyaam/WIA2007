@@ -49,6 +49,11 @@ public class BookActivity extends AppCompatActivity {
 
     }
 
+    public void goToPayment(View view) {
+        Intent intent = new Intent(BookActivity.this, DepositActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

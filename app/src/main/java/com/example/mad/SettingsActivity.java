@@ -1,6 +1,8 @@
 package com.example.mad;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -31,5 +33,15 @@ public class SettingsActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void goToReportDamage(View view) {
+        Intent intent = new Intent(SettingsActivity.this, ReportDamageActivity.class);
+        startActivity(intent);
+    }
+
+    public void goAppFeedback(View view) {
+        Intent intent = new Intent(SettingsActivity.this, AppFeedbackActivity.class);
+        startActivity(intent);
     }
 }

@@ -6,157 +6,233 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
-    <TextView
-        android:id="@+id/TVAskName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:text="Active Booking"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCollege" />
-
-    <TextView
-        android:id="@+id/TVAskName3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:text="History"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LLReceipt" />
-
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:icon="@drawable/ic_outline_settings_24"
-        app:iconGravity="textTop"
-        app:iconPadding="0dp"
-        app:iconSize="24dp"
-        app:iconTint="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/btnSettings2"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:icon="@drawable/ic_outline_edit_24"
-        app:iconGravity="textTop"
-        app:iconPadding="0dp"
-        app:iconSize="24dp"
-        app:iconTint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageView
-        android:id="@+id/imagePFP"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="8dp"
-        android:clickable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSettings"
-        app:srcCompat="@drawable/ic_outline_account_circle_24"
-        tools:src="@tools:sample/avatars[1]" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Wahed Puteh"
-        android:textColor="#000000"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePFP" />
-
-    <TextView
-        android:id="@+id/textCollege"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="8th Residential College"
-        android:textColor="#77000000"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
     <LinearLayout
-        android:id="@+id/LLReceipt"
-        android:layout_width="0dp"
+        android:id="@+id/LLProfileTopItems"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edit_text_outline"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingHorizontal="20dp"
         android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCompleteReturn"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="30dp">
+
+        <Button
+            android:id="@+id/btnToSettings"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_outline_settings_24"
+            app:iconGravity="textTop"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
+            app:iconTint="#000000"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Space
+            android:id="@+id/spceProfileTopItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnToEditProfile"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_outline_edit_24"
+            app:iconGravity="textTop"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
+            app:iconTint="#000000"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollViewProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="30dp"
+        android:paddingTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVAskName2"
-        app:layout_constraintWidth_percent="0.9">
+        app:layout_constraintTop_toBottomOf="@+id/LLProfileTopItems">
 
-        <TextView
-            android:id="@+id/TVBookSpace"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_outline_grid_on_24"
-            android:drawablePadding="20dp"
-            android:padding="10dp"
-            android:text="Space"
-            android:textAlignment="textStart"
-            android:textSize="20sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/TVBookLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_outline_location_on_24"
-            android:drawablePadding="20dp"
-            android:padding="10dp"
-            android:text="Location"
-            android:textAlignment="textStart"
-            android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/imagePFP"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:clickable="false"
+                app:srcCompat="@drawable/ic_outline_account_circle_24"
+                tools:src="@tools:sample/avatars[1]" />
 
-        <TextView
-            android:id="@+id/TVBookDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_outline_calendar_month_24"
-            android:drawablePadding="20dp"
-            android:padding="10dp"
-            android:text="Date"
-            android:textAlignment="textStart"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="Wahed Puteh"
+                android:textColor="#000000"
+                android:textSize="40sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/TVBookTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_outline_access_time_24"
-            android:drawablePadding="20dp"
-            android:padding="10dp"
-            android:text="Time"
-            android:textAlignment="textStart"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/textCollege"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="8th Residential College"
+                android:textColor="#77000000"
+                android:textSize="25sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/TVActiveBooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:text="Active Booking"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/LLReceipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/edit_text_outline"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/TVBookSpace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_outline_grid_on_24"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="Space"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TVBookLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_outline_location_on_24"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="Location"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TVBookDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_outline_calendar_month_24"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="Date"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TVBookTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_outline_access_time_24"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="Time"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TVBookingHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="History"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/LLHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/edit_text_outline_grey"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:id="@+id/TVHistory1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="History1"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TVHistory2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="History2"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TVHistory3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="History3"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/TVHistory4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20dp"
+                    android:padding="10dp"
+                    android:text="History4"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
