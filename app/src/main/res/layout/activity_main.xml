@@ -10,7 +10,6 @@
         android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="#A7EE00"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/bigheader"
         app:layout_constraintEnd_toEndOf="parent"
