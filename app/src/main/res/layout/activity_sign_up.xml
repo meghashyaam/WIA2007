@@ -23,7 +23,7 @@
         android:id="@+id/editTextSignUpUsername"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/textfield_style"
         android:ems="10"
         android:hint="username"
@@ -139,7 +139,6 @@
         android:id="@+id/textToLoginPageLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:background="@color/appgreen"
         android:clickable="true"
         android:contextClickable="false"
@@ -167,5 +166,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSignUpMatricID" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:forceDarkAllowed="false"
+        app:buttonSize="wide"
+        app:layout_constraintBottom_toTopOf="@+id/textToLoginPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+        app:layout_constraintWidth_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

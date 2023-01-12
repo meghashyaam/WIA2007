@@ -60,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setVisibility(View.GONE);
     }
 
+    public void goToSettings(View view) {
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToEditProfile(View view) {
+        Intent intent = new Intent(MainActivity.this, EditProfileActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

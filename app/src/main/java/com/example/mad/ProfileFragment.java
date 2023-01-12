@@ -10,17 +10,54 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProfileFragment extends Fragment{
 
+    TextView textName;
+
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        textName =(TextView) v.findViewById(R.id.textName);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        gsc = GoogleSignIn.getClient(getActivity(),gso);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
+
+        if (account!=null) {
+            String Name = account.getDisplayName();
+            textName.setText(Name);
+        }
+
+        return v;
+
     }
+
 
     @Override
     public void onResume() {
@@ -37,7 +74,7 @@ public class ProfileFragment extends Fragment{
     @Override
     public void onPause() {
         super.onPause();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
     @Override
@@ -45,5 +82,11 @@ public class ProfileFragment extends Fragment{
         super.onStart();
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
     }
+
+
+
+
+
+
 
 }
