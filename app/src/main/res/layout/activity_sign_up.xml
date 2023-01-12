@@ -115,10 +115,11 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:cornerRadius="24dp"
-        app:layout_constraintEnd_toStartOf="@id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxTerms"
-        app:layout_constraintBottom_toTopOf="@id/textToLoginPage"/>
+        app:layout_constraintWidth_percent="0.9" />
 
     <TextView
         android:id="@+id/textToLoginPage"
@@ -167,25 +168,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSignUpMatricID" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50" />
-
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginTop="20dp"
         android:forceDarkAllowed="false"
         app:buttonSize="wide"
         app:layout_constraintBottom_toTopOf="@+id/textToLoginPage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxTerms"
-
-        />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+        app:layout_constraintWidth_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
