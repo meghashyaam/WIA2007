@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "378322278053",
-    "project_id": "booking-735b6",
-    "storage_bucket": "booking-735b6.appspot.com"
+    "project_number": "876542163256",
+    "project_id": "wia2007mad-214fb",
+    "storage_bucket": "wia2007mad-214fb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:378322278053:android:95dab774b95457851c9f4c",
+        "mobilesdk_app_id": "1:876542163256:android:c780b9cb12f6f84c6a29cd",
         "android_client_info": {
           "package_name": "com.example.mad"
         }
       },
       "oauth_client": [
         {
-          "client_id": "378322278053-m6offaaphhrae02a336894080s6ucqdk.apps.googleusercontent.com",
+          "client_id": "876542163256-krtv75sv5t272qakd68tjn2uq90ha15u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAu9yPGdoq9gZS9apXBKSfBpT59IrE759Y"
+          "current_key": "AIzaSyDH6R-HkUhtGOVl-8SrkqIwF-RH4By8KyQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "378322278053-m6offaaphhrae02a336894080s6ucqdk.apps.googleusercontent.com",
+              "client_id": "876542163256-krtv75sv5t272qakd68tjn2uq90ha15u.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

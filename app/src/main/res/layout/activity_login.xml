@@ -125,4 +125,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textToSignUp"
         app:layout_constraintVertical_bias="0.0" />
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:forceDarkAllowed="false"
+        app:buttonSize="wide"
+        app:layout_constraintBottom_toTopOf="@+id/textToSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintVertical_bias="0.801"
+        app:layout_constraintWidth_percent="0.9" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
