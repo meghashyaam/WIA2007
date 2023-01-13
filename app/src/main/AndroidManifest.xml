@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,45 +11,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD"
-        tools:targetApi="31">
-
+        tools:targetApi="31" >
         <activity
             android:name=".BookingCompleteActivity"
-            android:exported="true">
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".DepositActivity"
-            android:exported="true">
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ForgotPasswordActivity"
-            android:exported="true">
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:exported="true">
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -57,16 +56,14 @@
         <activity
             android:name=".BookActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-
+            android:exported="true" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -74,45 +71,35 @@
         <activity
             android:name=".AppFeedbackActivity"
             android:exported="true"
-            android:parentActivityName=".AppFeedbackActivity">
+            android:parentActivityName=".AppFeedbackActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
-            android:parentActivityName=".SettingsActivity">
+            android:parentActivityName=".SettingsActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ReportDamageActivity"
             android:exported="true"
-            android:parentActivityName=".ReportDamageActivity">
+            android:parentActivityName=".ReportDamageActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".EditProfileActivity"
             android:exported="true"
-            android:parentActivityName=".EditProfileActivity">
+            android:parentActivityName=".EditProfileActivity" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
-
-
-
-
-
 
         <meta-data
             android:name="preloaded_fonts"

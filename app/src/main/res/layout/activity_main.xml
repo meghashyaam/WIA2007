@@ -36,6 +36,13 @@
 
         app:menu="@menu/bottom_nav_menu" />
 
+<ListView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/listview"/>
+
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -45,11 +52,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:defaultNavHost="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

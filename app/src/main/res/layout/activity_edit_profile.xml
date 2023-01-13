@@ -31,7 +31,7 @@
         android:maxLines="2"
         android:text="Edit Profile"
         android:textColor="#000000"
-        android:textSize="70dp"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
         app:srcCompat="@drawable/ic_outline_account_circle_24"
-        tools:src="@tools:sample/avatars[1]" />
+        tools:src="@tools:sample/avatars[1]"
+        android:contentDescription="TODO" />
 
     <EditText
         android:id="@+id/ETName"
@@ -66,6 +67,23 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVAskName"
+        app:layout_constraintWidth_percent="0.9"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/EditButton"
+        android:layout_width="84dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/design_default_color_background"
+        android:backgroundTint="@color/black"
+        android:text="Edit"
+        android:textColor="#000000"
+        android:textSize="19sp"
+        app:cornerRadius="@dimen/cardview_default_radius"
+        app:layout_constraintBottom_toTopOf="@+id/ETName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
@@ -87,13 +105,14 @@
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVAskCollege"
-        app:layout_constraintWidth_percent="0.9" />
+        app:layout_constraintWidth_percent="0.9"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/BtnConfirm"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/longbutton"
         android:text="Confirm"
         android:textColor="#000000"
