@@ -68,6 +68,7 @@
         android:backgroundTint="#FFC9D3"
         android:paddingStart="30dp"
         android:text="Logout"
+        android:onClick="goToLogout"
         android:textAlignment="textStart"
         android:textColor="#F91F1F"
         android:textSize="16sp"
