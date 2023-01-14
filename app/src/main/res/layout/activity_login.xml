@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextLoginEmail"
+        android:id="@+id/editTextLoginUsername"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="168dp"
@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLoginEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoginUsername"
         app:layout_constraintWidth_percent="0.9" />
 
     <Button

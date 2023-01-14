@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,18 +31,19 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
 
-    private EditText editTextLoginEmail,editTextLoginPassword;
+    private EditText editTextLoginUsername,editTextLoginPassword;
     private Button buttonLogin;
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
+//    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editTextLoginEmail = findViewById(R.id.editTextLoginEmail);
+        editTextLoginUsername = findViewById(R.id.editTextLoginUsername);
         editTextLoginPassword = findViewById(R.id.editTextLoginPassword);
 
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
@@ -73,18 +73,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void userLogin() {
-        String email = editTextLoginEmail.getText().toString().trim();
+        String email = editTextLoginUsername.getText().toString().trim();
         String password = editTextLoginPassword.getText().toString().trim();
 
         if (email.isEmpty()){
-            editTextLoginEmail.setError("Username is required!");
-            editTextLoginEmail.requestFocus();
+            editTextLoginUsername.setError("Username is required!");
+            editTextLoginUsername.requestFocus();
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextLoginEmail.setError("Please enter a valid email");
-            editTextLoginEmail.requestFocus();
+            editTextLoginUsername.setError("Please enter a valid email");
+            editTextLoginUsername.requestFocus();
             return;
         }
 

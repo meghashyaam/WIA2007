@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,6 +26,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
@@ -38,8 +42,35 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private EditText editTextSignUpUsername,editTextSignUpEmail,editTextSignUpMatricID,editTextSignUpPassword;
     private CheckBox checkBoxTerms;
 
-    FirebaseAuth mAuth;
-    FirebaseUser mUser;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+
+    private DatabaseReference mDatabase;
+
+    String username;
+    String email;
+    String matricID;
+    String password;
+
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.textToLoginPageLink:
+                this.goToLogin(view);
+                break;
+            case R.id.buttonSignUp:
+                boolean status = this.SignUpUser();
+                if (status){
+
+                    ProfileUser prof = new ProfileUser(username,email,matricID,password);
+                    mDatabase.child("prof").child(prof.getUsername()).setValue(prof).addOnSuccessListener(suc->{
+                        Toast.makeText(this, "Record is inserted", Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(er->{
+                        Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                    });;
+                }
+                break;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +85,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
         buttonSignUp.setOnClickListener(this);
+
+        mDatabase = FirebaseDatabase.getInstance("https://heyehye-13e9f-default-rtdb.firebaseio.com/").getReference();
 
         editTextSignUpUsername = (EditText) findViewById(R.id.editTextSignUpUsername);
         editTextSignUpEmail = (EditText) findViewById(R.id.editTextSignUpEmail);
@@ -114,108 +147,76 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.textToLoginPageLink:
-                this.goToLogin(view);
-                break;
-            case R.id.buttonSignUp:
-                this.SignUpUser();
-                break;
-        }
-    }
-
-    private void SignUpUser() {
-        Boolean okay= true;
-        String username = editTextSignUpUsername.getText().toString().trim();
-        String email = editTextSignUpEmail.getText().toString().trim();
-        String matricID = editTextSignUpMatricID.getText().toString().trim();
-        String password = editTextSignUpPassword.getText().toString().trim();
+    private boolean SignUpUser() {
+        Boolean okay = true;
+        username = editTextSignUpUsername.getText().toString().trim();
+        email = editTextSignUpEmail.getText().toString().trim();
+        matricID = editTextSignUpMatricID.getText().toString().trim();
+        password = editTextSignUpPassword.getText().toString().trim();
 
         if (username.isEmpty()) {
             editTextSignUpUsername.setError("Username is required");
             editTextSignUpUsername.requestFocus();
             okay = false;
-            return;
+            return okay;
         }
+
+        if(username.contains("@"))
 
         if (matricID.isEmpty()) {
             editTextSignUpMatricID.setError("matricID is required");
             editTextSignUpMatricID.requestFocus();
             okay = false;
-            return;
+            return okay;
         }
 
         if (!isMatricIDValid(matricID)) {
             editTextSignUpMatricID.setError("MatricID is invalid. Please enter a valid matriciD");
             editTextSignUpMatricID.requestFocus();
             okay = false;
-            return;
+            return okay;
         }
 
         if (email.isEmpty()) {
             editTextSignUpEmail.setError("email is required");
             editTextSignUpEmail.requestFocus();
             okay = false;
-            return;
+            return okay;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextSignUpEmail.setError("Email is nt valid. Please enter a valid email");
             editTextSignUpEmail.requestFocus();
             okay = false;
-            return;
+            return okay;
         }
 
         if (password.isEmpty()) {
             editTextSignUpPassword.setError("password is required");
             editTextSignUpPassword.requestFocus();
             okay = false;
-            return;
+            return okay;
         }
 
         if (password.length() < 6) {
             editTextSignUpPassword.setError("Min password length should be 6 characters");
             editTextSignUpPassword.requestFocus();
             okay = false;
-            return;
+            return okay;
         }
 
         if (!checkBoxTerms.isChecked()){
             Toast.makeText(SignUpActivity.this, "Please agree to the Terms and Conditions", Toast.LENGTH_SHORT).show();
             okay = false;
-            return;
+            return okay;
         }
-
-        if (okay){
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
-//                        User user = new User(username,email,matricID);
-                        Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
-//                        FirebaseDatabase.getInstance("https://fir-authall-61be6-default-rtdb.firebaseio.com/").getReference("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<Void> task) {
-//                                        if (task.isSuccessful()){
-//                                            Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                        else {
-//                                            Toast.makeText(SignUpActivity.this, "Failed to register!Try again!", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }
-//                                });
-
-                    }else {
-                        Toast.makeText(SignUpActivity.this, "Failed to register!Try again!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
+        return okay;
 
     }
+
+//    public void writeNewUser(){
+//
+//    }
 
     private boolean isMatricIDValid(String str){
         boolean valid = (str.charAt(0)=='U' || str.charAt(0)=='S' || str.charAt(0)=='u' || str.charAt(0)=='s') && (str.length()==8);
