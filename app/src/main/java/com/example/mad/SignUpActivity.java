@@ -48,8 +48,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private EditText editTextSignUpUsername,editTextSignUpEmail,editTextSignUpMatricID,editTextSignUpPassword;
     private CheckBox checkBoxTerms;
 
-    private FirebaseAuth mAuth;
-    private FirebaseUser mUser;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    private FirebaseUser mUser = mAuth.getCurrentUser();;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference fb = db.collection("Login");
@@ -96,8 +96,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
 
 //        String userID = mUser.getUid();
 
@@ -109,6 +107,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 boolean status = SignUpUser();
+                if (!status){
+                    return;
+                }
 //                    checkPreviousRecord(username);
                 fb.document(username).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -133,6 +134,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                             }).addOnFailureListener(er->{
                                                 Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
                                             });
+                                            mUser.sendEmailVerification();
                                             return;
                                         }else {
                                             Toast.makeText(SignUpActivity.this, "Email id already exists!\\nSelect a different email!", Toast.LENGTH_SHORT).show();

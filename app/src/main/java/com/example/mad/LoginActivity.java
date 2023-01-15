@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -43,8 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
+    FirebaseUser FUser = FirebaseAuth.getInstance().getCurrentUser();
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference fb = db.collection("Login");
+
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     String username;
     String password;
@@ -57,12 +62,46 @@ public class LoginActivity extends AppCompatActivity {
         editTextLoginUsername = findViewById(R.id.editTextLoginUsername);
         editTextLoginPassword = findViewById(R.id.editTextLoginPassword);
 
+        //to stop login
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user!=null){
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        };
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        sign_in_button = findViewById(R.id.sign_in_button);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        gsc = GoogleSignIn.getClient(this, gso);
+        sign_in_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SignIn();
+            }
+        });
+
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean status = userLogin();
-                fb.document(username).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                if (!status){
+                    return;
+                }
+                DocumentReference docRef = db.collection("Login").document(username);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
@@ -71,19 +110,25 @@ public class LoginActivity extends AppCompatActivity {
                                 String email;
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                                 Map<String, Object> newData = document.getData();
-                                newData.keySet();
+//                                newData.keySet();
                                 newData.get("email");
                                 email = String.valueOf(newData.get("email"));
                                 mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if(task.isSuccessful()){
-                                            FirebaseUser FUser = FirebaseAuth.getInstance().getCurrentUser();
-                                            if (FUser.isEmailVerified()) {
+                                            ProfileUser prof = new ProfileUser(username,email, (String) newData.get("matricID"),password);
+                                            docRef.set(prof).addOnSuccessListener(suc->{
+                                                Toast.makeText(LoginActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
+                                            }).addOnFailureListener(er->{
+                                                Toast.makeText(LoginActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+                                            mUser = mAuth.getCurrentUser();
+                                            if (mUser.isEmailVerified()) {
                                                 goToHome();
                                             }
                                             else{
-                                                FUser.sendEmailVerification();
+//                                                FUser.sendEmailVerification();
                                                 Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
                                             }
                                         }else {
@@ -111,23 +156,12 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+    }
 
-
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
-
-        sign_in_button = findViewById(R.id.sign_in_button);
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        gsc = GoogleSignIn.getClient(this, gso);
-        sign_in_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignIn();
-            }
-        });
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authStateListener);
     }
 
     private boolean userLogin() {

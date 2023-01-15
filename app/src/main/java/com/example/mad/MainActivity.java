@@ -19,10 +19,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +46,24 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        mAuth = FirebaseAuth.getInstance();
 
 
 
 
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null){
+            Intent startIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(startIntent);
+            finish();
+        }
     }
 
     public void showBottomNavigation() {
