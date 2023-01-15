@@ -1,10 +1,13 @@
 package com.example.mad;
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +15,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.mad.data.User;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,8 +33,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
@@ -51,6 +55,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private CollectionReference fb = db.collection("Login");
 
     private DatabaseReference wDatabase;
+    String[] abs = {""};
+
 //    private DatabaseFirestore rDatabase;
 
     String username;
@@ -78,9 +84,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-//    private boolean checkPreviousRecord(String str) {
-//        wDatabase.child(str)
-//    }
+    private void checkPreviousRecord(String str) {
+        boolean[] bool = {true};
+//        final String[] abs = {""};
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,15 +109,45 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 boolean status = SignUpUser();
-                if (status){
 //                    checkPreviousRecord(username);
-                    ProfileUser prof = new ProfileUser(username,email,matricID,password);
-                    fb.document(prof.getUsername()).set(prof).addOnSuccessListener(suc->{
-                        Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
-                    }).addOnFailureListener(er->{
-                        Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
-                }
+                fb.document(username).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                Toast.makeText(SignUpActivity.this, "Username already exists!\\nSelect a different username!", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else {
+                                Log.d(TAG, "No such document");
+                                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()){
+//                        User user = new User(username,email,matricID);
+                                            Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
+                                            ProfileUser prof = new ProfileUser(username,email,matricID,password);
+                                            fb.document(prof.getUsername()).set(prof).addOnSuccessListener(suc->{
+                                                Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
+                                            }).addOnFailureListener(er->{
+                                                Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+                                            return;
+                                        }else {
+                                            Toast.makeText(SignUpActivity.this, "Email id already exists!\\nSelect a different email!", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                    }
+                                });
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                            Toast.makeText(SignUpActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                });
             }
         });
 
