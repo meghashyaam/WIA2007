@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DepositActivity extends AppCompatActivity {
+
+    Button buttonDepositBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class DepositActivity extends AppCompatActivity {
     public void goToBookingComplete(View view) {
         Intent intent = new Intent(DepositActivity.this, BookingCompleteActivity.class);
         startActivity(intent);
+        buttonDepositBook = findViewById(R.id.buttonDepositBook);
+        final MediaPlayer cheeringSound = MediaPlayer.create(this,R.raw.cheeringsound);
+        cheeringSound.start();
     }
 
     @Override
