@@ -4,12 +4,132 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:transitionGroup="false"
     app:layout_constraintWidth_percent="0.9"
     tools:context=".BookActivity">
 
     <!-- TOOLBAR BACKGROUND COLOR IS ONLY TO INDICATE THE SIZE. REMOVE ONCE DONE CODING -->
+
+    <TextView
+        android:id="@+id/textDate"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_outline"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="20dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
+
+    <TextView
+        android:id="@+id/textDate2"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_outline"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="20dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/textDate"
+        app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
+
+    <Button
+        android:id="@+id/buttonBookHalls3"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_style"
+        android:text="Halls"
+        android:textColor="#000000"
+        android:textColorHighlight="@color/appgreenalpha"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_outline_domain_24"
+        app:iconGravity="textTop"
+        app:iconPadding="1dp"
+        app:iconSize="24dp"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBookStudyCube"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2"
+        app:layout_constraintWidth_percent="0.29" />
+
+    <Button
+        android:id="@+id/buttonBookStudyCube"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_style"
+        android:lineSpacingMultiplier="0.85"
+        android:singleLine="false"
+        android:text="Study cubes"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textColorHighlight="@color/appgreenalpha"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_outline_school_24"
+        app:iconGravity="textTop"
+        app:iconPadding="1dp"
+        app:iconSize="24dp"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/buttonCourts"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonBookHalls3"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2"
+        app:layout_constraintWidth_percent="0.29" />
+
+    <Button
+        android:id="@+id/buttonCourts"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_style"
+        android:text="Courts"
+        android:textColor="#000000"
+        android:textColorHighlight="@color/appgreenalpha"
+        android:textSize="18sp"
+        app:icon="@drawable/ic_outline_sports_basketball_24"
+        app:iconGravity="textTop"
+        app:iconPadding="1dp"
+        app:iconSize="24dp"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonBookStudyCube"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2"
+        app:layout_constraintWidth_percent="0.29" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_outline"
+        android:dropDownWidth="match_parent"
+        android:paddingHorizontal="20dp"
+        android:popupBackground="@drawable/outline_popup"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintWidth_percent="0.9"
+        app:actionViewClass="android.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
@@ -18,6 +138,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/bigheader"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
@@ -43,95 +164,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
 
-    <Button
-        android:id="@+id/buttonBookHalls"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_style"
-        android:text="Halls"
-        android:textColor="#000000"
-        android:textColorHighlight="@color/appgreenalpha"
-        android:textSize="18sp"
-        app:icon="@drawable/ic_outline_domain_24"
-        app:iconGravity="textTop"
-        app:iconPadding="1dp"
-        app:iconSize="24dp"
-        app:iconTint="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/buttonCourts"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonBookStudyCube"
-        app:layout_constraintTop_toBottomOf="@+id/searchBook"
-        app:layout_constraintWidth_percent="0.29" />
-
-    <Button
-        android:id="@+id/buttonCourts"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_style"
-        android:text="Courts"
-        android:textColor="#000000"
-        android:textColorHighlight="@color/appgreenalpha"
-        android:textSize="18sp"
-        app:icon="@drawable/ic_outline_sports_basketball_24"
-        app:iconGravity="textTop"
-        app:iconPadding="1dp"
-        app:iconSize="24dp"
-        app:iconTint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonBookHalls"
-        app:layout_constraintTop_toBottomOf="@+id/searchBook"
-        app:layout_constraintWidth_percent="0.29" />
-
-    <Button
-        android:id="@+id/buttonBookStudyCube"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_style"
-        android:lineSpacingMultiplier="0.85"
-        android:singleLine="false"
-        android:text="Study cubes"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textColorHighlight="@color/appgreenalpha"
-        android:textIsSelectable="false"
-        android:textSize="18sp"
-        app:icon="@drawable/ic_outline_school_24"
-        app:iconGravity="textTop"
-        app:iconPadding="1dp"
-        app:iconSize="24dp"
-        app:iconTint="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/buttonBookHalls"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBook"
-        app:layout_constraintWidth_percent="0.29" />
-
-    <android.widget.SearchView
-        android:id="@+id/searchBook"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_style"
-        android:baselineAligned="false"
-        android:iconifiedByDefault="false"
-        android:paddingHorizontal="10dp"
-        android:pointerIcon="none"
-        android:queryBackground="@android:color/transparent"
-        android:queryHint="Search college"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
-        app:layout_constraintWidth_percent="0.9"
-        app:actionViewClass="android.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView"
-        />
-
     <TextView
         android:id="@+id/textPickaDate"
         android:layout_width="wrap_content"
@@ -140,10 +172,10 @@
         android:layout_marginTop="8dp"
         android:text="Pick a date"
         android:textColor="#000000"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBookStudyCube" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonBookHalls3" />
 
     <TextView
         android:id="@+id/textPickaTime"
@@ -153,108 +185,94 @@
         android:layout_marginTop="8dp"
         android:text="Pick a time"
         android:textColor="#000000"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBookToday" />
-
-    <TextView
-        android:id="@+id/textBookRequest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:text="Requests"
-        android:textColor="#000000"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStartDatePicker" />
+        app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
     <Button
-        android:id="@+id/buttonBookTommorow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/button_style"
-        android:text="Tommorow"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/buttonBookToday"
-        app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
-
-    <Button
-        android:id="@+id/buttonBookToday"
+        android:id="@+id/buttonTime34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:background="@drawable/button_style"
-        android:text="Today"
+        android:text="3 - 4 PM"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
+        app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
 
     <Button
-        android:id="@+id/buttonStartDatePicker"
+        android:id="@+id/buttonTime56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_style"
+        android:text="5 - 6 PM"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/buttonTime45"
+        app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
+
+    <Button
+        android:id="@+id/buttonTime89"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_style"
+        android:text="8 - 9 PM"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/buttonTime78"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTime56" />
+
+    <Button
+        android:id="@+id/buttonTime45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_style"
+        android:text="4 - 5 PM"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/buttonTime34"
+        app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
+
+    <Button
+        android:id="@+id/buttonTime67"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:background="@drawable/button_style"
-        android:text="Start"
+        android:text="6 - 7 PM"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonTime34" />
 
     <Button
-        android:id="@+id/buttonDatePicker"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/circle_outline"
-        android:contentDescription="Button for date picker"
-        android:contextClickable="false"
-        android:includeFontPadding="false"
-        app:icon="@drawable/ic_outline_calendar_month_24"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:iconSize="24dp"
-        app:iconTint="#000000"
-        app:layout_constraintStart_toEndOf="@+id/buttonBookTommorow"
-        app:layout_constraintTop_toBottomOf="@+id/textPickaDate" />
-
-    <Button
-        android:id="@+id/buttonEndDatePicker"
+        android:id="@+id/buttonTime78"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:background="@drawable/button_style"
-        android:text="End"
+        android:text="7 - 8 PM"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/iconRight"
-        app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
-
-    <ImageView
-        android:id="@+id/iconRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/buttonStartDatePicker"
-        app:layout_constraintTop_toBottomOf="@+id/textPickaTime"
-        app:srcCompat="@drawable/ic_outline_arrow_forward_24" />
+        app:layout_constraintStart_toEndOf="@+id/buttonTime67"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTime45" />
 
     <Button
         android:id="@+id/buttonPay"
@@ -262,8 +280,8 @@
         android:layout_height="70dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/longbutton"
-        android:onClick="goToBookingComplete"
-        android:text="Book!"
+        android:onClick="goToPayment"
+        android:text="Go to payment"
         android:textColor="#000000"
         android:textSize="24sp"
         app:cornerRadius="24dp"
@@ -276,23 +294,23 @@
         android:id="@+id/editTextBookRequest"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_style"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edit_text_outline"
         android:backgroundTint="#1A000000"
         android:ems="10"
-        android:hint="Extra equipments, stationeries, etc."
+        android:hint="(Optional) Drop a request"
         android:inputType="textPersonName"
         android:paddingStart="30dp"
+
         android:paddingEnd="30dp"
         android:textColorHighlight="@color/appgreenalpha"
-
         android:textSize="20sp"
+
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textBookRequest"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTime78"
         app:layout_constraintWidth_percent="0.9" />
 
 
