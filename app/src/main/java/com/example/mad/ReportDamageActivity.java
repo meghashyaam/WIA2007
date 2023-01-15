@@ -40,6 +40,9 @@ public class ReportDamageActivity extends AppCompatActivity {
         Button button = findViewById(R.id.buttonBookHalls2);
         Button button1 = findViewById(R.id.buttonBookStudyCube2);
         Button button2 = findViewById(R.id.buttonCourts2);
+        button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22000000")));
+        button1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22000000")));
+        button2.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22000000")));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,18 +75,18 @@ public class ReportDamageActivity extends AppCompatActivity {
 
         List<String> college = new ArrayList<>();
 
-        college.add("KK 1");
-        college.add("KK 2");
-        college.add("KK 3");
-        college.add("KK 4");
-        college.add("KK 5");
-        college.add("KK 6");
-        college.add("KK 7");
-        college.add("KK 8");
-        college.add("KK 9");
-        college.add("KK 10");
-        college.add("KK 11");
-        college.add("KK 12");
+        college.add("Kolej Kediaman 1");
+        college.add("Kolej Kediaman 2");
+        college.add("Kolej Kediaman 3");
+        college.add("Kolej Kediaman 4");
+        college.add("Kolej Kediaman 5");
+        college.add("Kolej Kediaman 6");
+        college.add("Kolej Kediaman 7");
+        college.add("Kolej Kediaman 8");
+        college.add("Kolej Kediaman 9");
+        college.add("Kolej Kediaman 10");
+        college.add("Kolej Kediaman 11");
+        college.add("Kolej Kediaman 12");
 
         Spinner spinner = findViewById(R.id.spinner3);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ReportDamageActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, college);

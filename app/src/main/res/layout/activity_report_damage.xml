@@ -9,13 +9,16 @@
 
     <Spinner
         android:id="@+id/spinner3"
+        style="@android:style/Widget.Material.Spinner"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_outline"
         android:dropDownWidth="match_parent"
-        android:paddingHorizontal="20dp"
+        android:gravity="center"
+        android:padding="20dp"
         android:pointerIcon="none"
+        android:popupBackground="@drawable/outline_popup"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +41,8 @@
         app:iconPadding="1dp"
         app:iconSize="24dp"
         app:iconTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBookStudyCube2"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner3"
         app:layout_constraintWidth_percent="0.29" />
@@ -62,6 +67,7 @@
         app:iconSize="24dp"
         app:iconTint="#000000"
         app:layout_constraintEnd_toStartOf="@+id/buttonCourts2"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonBookHalls2"
         app:layout_constraintTop_toBottomOf="@+id/spinner3"
         app:layout_constraintWidth_percent="0.29" />
@@ -83,6 +89,8 @@
         app:iconSize="24dp"
         app:iconTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonBookStudyCube2"
         app:layout_constraintTop_toBottomOf="@+id/spinner3"
         app:layout_constraintWidth_percent="0.29" />
 
