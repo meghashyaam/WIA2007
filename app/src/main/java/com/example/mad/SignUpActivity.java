@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -45,7 +47,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
-    private DatabaseReference mDatabase;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference fb = db.collection("Login");
+
+    private DatabaseReference wDatabase;
+//    private DatabaseFirestore rDatabase;
 
     String username;
     String email;
@@ -57,20 +63,24 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.textToLoginPageLink:
                 this.goToLogin(view);
                 break;
-            case R.id.buttonSignUp:
-                boolean status = this.SignUpUser();
-                if (status){
-
-                    ProfileUser prof = new ProfileUser(username,email,matricID,password);
-                    mDatabase.child("prof").child(prof.getUsername()).setValue(prof).addOnSuccessListener(suc->{
-                        Toast.makeText(this, "Record is inserted", Toast.LENGTH_SHORT).show();
-                    }).addOnFailureListener(er->{
-                        Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-                    });;
-                }
-                break;
+//            case R.id.buttonSignUp:
+//                boolean status = this.SignUpUser();
+//                if (status){
+////                    checkPreviousRecord(username);
+//                    ProfileUser prof = new ProfileUser(username,email,matricID,password);
+//                    fb.document(prof.getUsername()).set(prof).addOnSuccessListener(suc->{
+//                        Toast.makeText(this, "Record is inserted", Toast.LENGTH_SHORT).show();
+//                    }).addOnFailureListener(er->{
+//                        Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//                    });
+//                }
+//                break;
         }
     }
+
+//    private boolean checkPreviousRecord(String str) {
+//        wDatabase.child(str)
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +90,29 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
+//        String userID = mUser.getUid();
+
         textToLoginPageLink = (TextView) findViewById(R.id.textToLoginPageLink);
         textToLoginPageLink.setOnClickListener(this);
 
         buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
-        buttonSignUp.setOnClickListener(this);
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean status = SignUpUser();
+                if (status){
+//                    checkPreviousRecord(username);
+                    ProfileUser prof = new ProfileUser(username,email,matricID,password);
+                    fb.document(prof.getUsername()).set(prof).addOnSuccessListener(suc->{
+                        Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
+                    }).addOnFailureListener(er->{
+                        Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }
+        });
 
-        mDatabase = FirebaseDatabase.getInstance("https://heyehye-13e9f-default-rtdb.firebaseio.com/").getReference();
+        wDatabase = FirebaseDatabase.getInstance().getReference();
 
         editTextSignUpUsername = (EditText) findViewById(R.id.editTextSignUpUsername);
         editTextSignUpEmail = (EditText) findViewById(R.id.editTextSignUpEmail);
@@ -148,7 +174,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean SignUpUser() {
-        Boolean okay = true;
+        boolean okay = true;
         username = editTextSignUpUsername.getText().toString().trim();
         email = editTextSignUpEmail.getText().toString().trim();
         matricID = editTextSignUpMatricID.getText().toString().trim();
@@ -160,8 +186,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             okay = false;
             return okay;
         }
-
-        if(username.contains("@"))
+        String msg = isUsernameValid(username);
+        if(msg.length()!=0){
+            editTextSignUpUsername.setError(msg);
+            editTextSignUpUsername.requestFocus();
+            okay = false;
+            return okay;
+        }
 
         if (matricID.isEmpty()) {
             editTextSignUpMatricID.setError("matricID is required");
@@ -212,6 +243,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
         return okay;
 
+    }
+
+    private String isUsernameValid(String username) {
+        if (username.length()>20){
+            return "Username is too long. Must be 20 characters or less";
+        }
+        for (int i = 0; i<username.length(); i++) {
+            if( (!(username.charAt(i)>=48 && username.charAt(i)<=57))  &&  (!(username.charAt(i)>=65 && username.charAt(i)<=90))
+                    &&  (!(username.charAt(i)>=97 && username.charAt(i)<=122)) ){
+               return "Username cannot contain characters other than alphabets and numbers";
+            } 
+        }
+        return "";
     }
 
 //    public void writeNewUser(){
