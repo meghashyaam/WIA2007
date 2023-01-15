@@ -245,22 +245,6 @@
         app:layout_constraintStart_toEndOf="@+id/iconRight"
         app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSpaceVacancy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/edit_text_outline_grey"
-        android:clickable="false"
-        android:hint="Vacancy"
-        android:textAllCaps="false"
-        android:textColor="#33000000"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/buttonEndDatePicker"
-        app:layout_constraintTop_toBottomOf="@+id/textPickaTime" />
-
     <ImageView
         android:id="@+id/iconRight"
         android:layout_width="wrap_content"
@@ -277,8 +261,8 @@
         android:layout_height="70dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/longbutton"
-        android:onClick="goToPayment"
-        android:text="Go to payment"
+        android:onClick="goToBookingComplete"
+        android:text="Book!"
         android:textColor="#000000"
         android:textSize="24sp"
         app:cornerRadius="24dp"

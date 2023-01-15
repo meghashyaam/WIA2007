@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToBook(View view) {
+        Intent intent = new Intent(MainActivity.this, BookActivity.class);
+        startActivity(intent);
+    }
+
 
 
 

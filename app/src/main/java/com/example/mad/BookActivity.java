@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class BookActivity extends AppCompatActivity {
+
+    Button buttonDepositBook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +41,35 @@ public class BookActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
         //change press color for buttonBookStudyCube
         Button buttonBookStudyCube = findViewById(R.id.buttonBookStudyCube);
         buttonBookStudyCube.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View view) {
                 buttonBookStudyCube.setSelected(!buttonBookStudyCube.isSelected());
             }
         });
 
+
+
+
+
+
+
     }
 
-    public void goToPayment(View view) {
-        Intent intent = new Intent(BookActivity.this, DepositActivity.class);
+    public void goToBookingComplete(View view) {
+        Intent intent = new Intent(BookActivity.this, BookingCompleteActivity.class);
         startActivity(intent);
+        buttonDepositBook = findViewById(R.id.buttonPay);
+        final MediaPlayer cheeringSound = MediaPlayer.create(this,R.raw.cheeringsound);
+        cheeringSound.start();
     }
+
+
+
+
 
 
 
