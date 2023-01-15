@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
+    android:background="@color/white"
     android:contentDescription="logo of kolej kediaman kinabalu"
     android:padding="0dp"
     android:scrollbarSize="0dp"
@@ -13,9 +14,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnHalls"
-        android:layout_width="129dp"
-        android:layout_height="237dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/halls"
         android:contentDescription="empty lecture hall"
         android:onClick="goToBook"
@@ -26,7 +29,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="151dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
@@ -41,7 +44,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button6"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="151dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
@@ -56,8 +59,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCourts"
-        android:layout_width="129dp"
-        android:layout_height="237dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/courts"
@@ -110,8 +114,8 @@
         android:id="@+id/textHall"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
         android:text="Halls"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -132,7 +136,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="151dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
@@ -147,10 +151,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnStudyCubes"
-        android:layout_width="129dp"
-        android:layout_height="237dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/study_cube"
         android:contentDescription="A hand writing down notes on paper"
         android:onClick="goToBook"
@@ -191,7 +196,7 @@
 
     <ImageView
         android:id="@+id/botomspacing"
-        android:layout_width="432dp"
+        android:layout_width="0dp"
         android:layout_height="82dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
