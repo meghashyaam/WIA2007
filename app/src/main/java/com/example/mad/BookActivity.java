@@ -260,9 +260,19 @@ public class BookActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Toast.makeText(BookActivity.this, "Booking Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(BookActivity.this, BookingCompleteActivity.class);
+
+                            Intent intent = new Intent(BookActivity.this, MainActivity.class);
+
+                            intent.putExtra("cat", cat);
+                            intent.putExtra("kk", kk);
+                            intent.putExtra("date", date);
+                            intent.putExtra("time", time);
+
                             startActivity(intent);
                             playSound();
+
+
+
 
 
                         }

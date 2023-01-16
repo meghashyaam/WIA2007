@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -55,23 +56,19 @@ public class SettingsActivity extends AppCompatActivity {
 
         btnLogOut = findViewById(R.id.buttonLogout);
 
-        btnLogOut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Signout();
-            }
-        });
+
     }
 
-    private void Signout() {
-        gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>(){
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                finish();
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-            }
-        });
-    }
+//    private void Signout() {
+//        gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>(){
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                finish();
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     public void goToReportDamage(View view) {
         Intent intent = new Intent(SettingsActivity.this, ReportDamageActivity.class);
@@ -80,6 +77,12 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void goAppFeedback(View view) {
         Intent intent = new Intent(SettingsActivity.this, AppFeedbackActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToLogOut(View view){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent= new Intent(SettingsActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 

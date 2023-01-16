@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
@@ -32,13 +31,13 @@
         android:maxLines="2"
         android:text="Edit Profile"
         android:textColor="#000000"
-        android:textSize="70dp"
+        android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imagePFP2"
         android:layout_width="250dp"
         android:layout_height="250dp"
@@ -46,7 +45,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
         app:srcCompat="@drawable/ic_outline_account_circle_24"
-        tools:src="@tools:sample/avatars[1]" />
+        tools:src="@tools:sample/avatars[1]"
+        android:contentDescription="TODO" />
+
+
 
     <EditText
         android:id="@+id/ETName"
@@ -67,6 +69,23 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVAskName"
+        app:layout_constraintWidth_percent="0.9"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/EditButton"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="52dp"
+        android:textColor="#000000"
+        android:textSize="19sp"
+        app:icon="@drawable/ic_outline_camera_enhance_24"
+        app:iconGravity="textTop"
+        app:iconPadding="0dp"
+        app:iconSize="24dp"
+        app:iconTint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagePFP2"
         app:layout_constraintWidth_percent="0.9" />
 
     <EditText
@@ -88,13 +107,14 @@
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVAskCollege"
-        app:layout_constraintWidth_percent="0.9" />
+        app:layout_constraintWidth_percent="0.9"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/BtnConfirm"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/longbutton"
         android:text="Confirm"
         android:textColor="#000000"
@@ -123,11 +143,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
         android:text="Name"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePFP2" />
+        app:layout_constraintTop_toBottomOf="@+id/EditButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
