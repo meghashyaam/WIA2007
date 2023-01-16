@@ -51,7 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
         storageProfilePicsRef = FirebaseStorage.getInstance().getReference().child("Profile Pic");
 
         ProfileImage = (CircleImageView) findViewById(R.id.imagePFP2);
-        EditButton = (Button) findViewById(R.id.EditButton);
+        EditButton = findViewById(R.id.EditButton);
         EditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

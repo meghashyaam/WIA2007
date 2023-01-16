@@ -19,7 +19,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     EditText editTextPREmail;
     Button buttonPRSubmit;
-//    private
+    //    private
     FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
