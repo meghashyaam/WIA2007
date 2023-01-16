@@ -33,9 +33,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -127,21 +124,23 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()){
 //                        User user = new User(username,email,matricID);
-//                                            mUser = mAuth.getCurrentUser();
+                                            FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+                                            String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                            FirebaseAuth.getInstance().signOut();
                                             Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
                                             ProfileUser prof = new ProfileUser(username,email,matricID,password);
-                                            fb.document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(prof).addOnSuccessListener(suc->{
+                                            fb.document(UserId).set(prof).addOnSuccessListener(suc->{
                                                 Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
                                             }).addOnFailureListener(er->{
                                                 Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
                                             });
+
                                             fb.document((String)prof.getMatricID()).set(prof).addOnSuccessListener(suc->{
                                                 Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
                                             }).addOnFailureListener(er->{
                                                 Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
                                             });
-                                            FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
-                                            FirebaseAuth.getInstance().signOut();
+//                                            FirebaseAuth.getInstance().signOut();
                                             return;
                                         }else {
                                             Toast.makeText(SignUpActivity.this, "Email id already exists!\\nSelect a different email!", Toast.LENGTH_SHORT).show();
@@ -149,6 +148,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                         }
                                     }
                                 });
+//                                FirebaseAuth.getInstance().signOut();;
                             }
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
@@ -157,8 +157,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         }
                     }
                 });
+                goToLogout();
             }
-        });
+
+            private void goToLogout() {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        })
+        ;
 
         wDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -181,8 +189,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 SignIn();
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
+    }
+
+    public void goToLogout(View view){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
     public void goToLogin(View view) {

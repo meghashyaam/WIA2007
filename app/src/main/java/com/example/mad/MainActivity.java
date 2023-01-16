@@ -79,34 +79,34 @@ public class MainActivity extends AppCompatActivity {
             startActivity(startIntent);
             finish();
         }
-        else{
-            DocumentReference docRef = db.collection("Login").document((String)currentUser.getUid());
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            String email;
-                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                            Map<String, Object> newData = document.getData();
-//                                newData.keySet();
-                            newData.get("username");
-                            email = String.valueOf(newData.get("email"));
-                            return;
-                        } else {
-                            Log.d(TAG, "No such document");
-                            Toast.makeText(MainActivity.this, "No details", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                        Toast.makeText(MainActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-            });
-        }
+//        else{
+//            DocumentReference docRef = db.collection("Login").document((String)currentUser.getUid());
+//            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot document = task.getResult();
+//                        if (document.exists()) {
+//                            String email;
+//                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                            Map<String, Object> newData = document.getData();
+////                                newData.keySet();
+//                            newData.get("username");
+//                            email = String.valueOf(newData.get("email"));
+//                            return;
+//                        } else {
+//                            Log.d(TAG, "No such document");
+//                            Toast.makeText(MainActivity.this, "No details", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                    } else {
+//                        Log.d(TAG, "get failed with ", task.getException());
+//                        Toast.makeText(MainActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                }
+//            });
+//        }
     }
 
     public void showBottomNavigation() {
