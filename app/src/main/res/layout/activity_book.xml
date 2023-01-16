@@ -126,7 +126,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
-        app:layout_constraintWidth_percent="0.9" />
+        app:layout_constraintWidth_percent="0.9"
+        app:actionViewClass="android.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
 
     <TextView
         android:id="@+id/textPickaDate"

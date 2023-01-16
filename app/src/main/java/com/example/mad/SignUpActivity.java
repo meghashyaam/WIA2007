@@ -111,14 +111,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     return;
                 }
 //                    checkPreviousRecord(username);
-                fb.document(username).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                fb.document(matricID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                Toast.makeText(SignUpActivity.this, "Username already exists!\\nSelect a different username!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "matricID is already in use!", Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
                                 Log.d(TAG, "No such document");
@@ -127,14 +127,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()){
 //                        User user = new User(username,email,matricID);
+//                                            mUser = mAuth.getCurrentUser();
                                             Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
                                             ProfileUser prof = new ProfileUser(username,email,matricID,password);
-                                            fb.document(prof.getUsername()).set(prof).addOnSuccessListener(suc->{
+                                            fb.document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(prof).addOnSuccessListener(suc->{
                                                 Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
                                             }).addOnFailureListener(er->{
                                                 Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
                                             });
-                                            mUser.sendEmailVerification();
+                                            fb.document((String)prof.getMatricID()).set(prof).addOnSuccessListener(suc->{
+                                                Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
+                                            }).addOnFailureListener(er->{
+                                                Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                                            });
+                                            FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+                                            FirebaseAuth.getInstance().signOut();
                                             return;
                                         }else {
                                             Toast.makeText(SignUpActivity.this, "Email id already exists!\\nSelect a different email!", Toast.LENGTH_SHORT).show();

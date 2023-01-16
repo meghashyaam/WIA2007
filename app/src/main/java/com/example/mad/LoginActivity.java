@@ -5,9 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Source;
 
 import java.util.Map;
 
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
 
-    private EditText editTextLoginUsername,editTextLoginPassword;
+    private EditText editTextLoginEmail,editTextLoginPassword;
     private Button buttonLogin;
 
     FirebaseAuth mAuth;
@@ -51,15 +54,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authStateListener;
 
-    String username;
+    String email;
     String password;
 //    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        editTextLoginUsername = findViewById(R.id.editTextLoginUsername);
+        editTextLoginEmail = findViewById(R.id.editTextLoginEmail);
         editTextLoginPassword = findViewById(R.id.editTextLoginPassword);
 
         //to stop login
@@ -100,60 +104,120 @@ public class LoginActivity extends AppCompatActivity {
                 if (!status){
                     return;
                 }
-                DocumentReference docRef = db.collection("Login").document(username);
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                   @Override
+                   public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                String email;
-                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                Map<String, Object> newData = document.getData();
+                            FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+                            DocumentReference docRef = db.collection("Login").document(mUser.getUid());
+                               if (mUser.isEmailVerified()) {
+                                   docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                       @Override
+                                       public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                           if (task.isSuccessful()) {
+                                               DocumentSnapshot document = task.getResult();
+                                               if (document.exists()) {
+                                                   Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                                   Map<String, Object> newData = document.getData();
 //                                newData.keySet();
-                                newData.get("email");
-                                email = String.valueOf(newData.get("email"));
-                                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if(task.isSuccessful()){
-                                            ProfileUser prof = new ProfileUser(username,email, (String) newData.get("matricID"),password);
-                                            docRef.set(prof).addOnSuccessListener(suc->{
-                                                Toast.makeText(LoginActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
-                                            }).addOnFailureListener(er->{
-                                                Toast.makeText(LoginActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-                                            });
-                                            mUser = mAuth.getCurrentUser();
-                                            if (mUser.isEmailVerified()) {
-                                                goToHome();
-                                            }
-                                            else{
-//                                                FUser.sendEmailVerification();
-                                                Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }else {
-                                            Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                    private void goToHome() {
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        startActivity(intent);
-                                    }
-                                });
-//                                Toast.makeText(LoginActivity.this, abc, Toast.LENGTH_SHORT).show();
-                                return;
-                            } else {
-                                Log.d(TAG, "No such document");
-                                Toast.makeText(LoginActivity.this, "Wrong username! Enter again", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
-                            Toast.makeText(LoginActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
+                                                   newData.get("email");
+                                                   ProfileUser prof = new ProfileUser(String.valueOf(newData.get("username")),(String)email,String.valueOf(newData.get("matricID")),(String)password);
+                                                   fb.document(mAuth.getCurrentUser().getUid()).set(prof);
+                                                   fb.document((String) newData.get("matricID")).set(prof);
+//                                                   username = String.valueOf(newData.get("email"));
+                                               } else {
+                                                    Log.d(TAG, "No such document");
+                                                    Toast.makeText(LoginActivity.this, "Wrong email! Enter again", Toast.LENGTH_SHORT).show();
+                                                    return;
+                                               }
+                                           } else {
+                                                   Log.d(TAG, "get failed with ", task.getException());
+                                                   Toast.makeText(LoginActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
+                                                   return;
+                                           }
+                                       }
+                                   });
+                               } else{
+                                   Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
+                               }
+                           } else {
+                                 Toast.makeText(LoginActivity.this, "Wrong credentials! Check your credentials!", Toast.LENGTH_SHORT).show();
+                           }
+                        };
                 });
+//                                ProfileUser prof = new ProfileUser(,email, (String) newData.get("matricID"),password);
+//                                docRef.set(prof).addOnSuccessListener(suc->{
+//                                    Toast.makeText(LoginActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
+//                                }).addOnFailureListener(er->{
+//                                    Toast.makeText(LoginActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//                                });
+//                                goToHome();
+//                            }
+//                            else{
+//                                Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }else {
+//                            Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                    private void goToHome() {
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                    }
+//                });
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                String email;
+//                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+//                                Map<String, Object> newData = document.getData();
+////                                newData.keySet();
+//                                newData.get("email");
+//                                email = String.valueOf(newData.get("email"));
+//                                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                                        if(task.isSuccessful()){
+//                                            ProfileUser prof = new ProfileUser( email,email, (String) newData.get("matricID"),password);
+//                                            docRef.set(prof).addOnSuccessListener(suc->{
+//                                                Toast.makeText(LoginActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
+//                                            }).addOnFailureListener(er->{
+//                                                Toast.makeText(LoginActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//                                            });
+//                                            mUser = mAuth.getCurrentUser();
+//                                            if (mUser.isEmailVerified()) {
+//                                                goToHome();
+//                                            }
+//                                            else{
+////                                                FUser.sendEmailVerification();
+//                                                Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        }else {
+//                                            Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                    private void goToHome() {
+//                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                        startActivity(intent);
+//                                    }
+//                                });
+////                                Toast.makeText(LoginActivity.this, abc, Toast.LENGTH_SHORT).show();
+//                                return;
+//                            } else {
+//                                Log.d(TAG, "No such document");
+//                                Toast.makeText(LoginActivity.this, "Wrong username! Enter again", Toast.LENGTH_SHORT).show();
+//                                return;
+//                            }
+//                        } else {
+//                            Log.d(TAG, "get failed with ", task.getException());
+//                            Toast.makeText(LoginActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
+//                            return;
+//                        }
+//                    }
+//                });
             }
         });
     }
@@ -165,27 +229,27 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean userLogin() {
-        username = editTextLoginUsername.getText().toString().trim();
+        email = editTextLoginEmail.getText().toString().trim();
         password = editTextLoginPassword.getText().toString().trim();
 
-        if (username.isEmpty()){
-            editTextLoginUsername.setError("Username is required!");
-            editTextLoginUsername.requestFocus();
+        if ( email.isEmpty()){
+            editTextLoginEmail.setError("Username is required!");
+            editTextLoginEmail.requestFocus();
             return false;
         }
 
-        String msg = isUsernameValid(username);
-        if(msg.length()!=0){
-            editTextLoginUsername.setError(msg);
-            editTextLoginUsername.requestFocus();
-            return false;
-        }
-
-//        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//            editTextLoginUsername.setError("Please enter a valid email");
-//            editTextLoginUsername.requestFocus();
-//            return;
+//        String msg = isUsernameValid( email);
+//        if(msg.length()!=0){
+//            editTextLoginEmail.setError(msg);
+//            editTextLoginEmail.requestFocus();
+//            return false;
 //        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editTextLoginEmail.setError("Please enter a valid email");
+            editTextLoginEmail.requestFocus();
+            return false;
+        }
 
         if (password.isEmpty()){
             editTextLoginPassword.setError("Password is required!");
