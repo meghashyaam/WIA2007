@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                     }
                     else{
-                        Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
 //                        firebaseAuth.signOut();
                         return;
                     }
@@ -114,47 +114,60 @@ public class LoginActivity extends AppCompatActivity {
                 if (!status){
                     return;
                 }
-                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                status = false;
+                String identifier = "";
+                for (int i = 0; i < email.length(); i++) {
+                    if (email.charAt(i)=='@' || email.charAt(i)=='.'){
+                        identifier += "_";
+                    }
+                    else{
+                        identifier += email.charAt(i);
+                    }
+                }
+                DocumentReference docRef = db.collection("Login").document(identifier);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-                            DocumentReference docRef = db.collection("Login").document(mUser.getUid());
-                            if (mUser.isEmailVerified()) {
-                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            DocumentSnapshot document = task.getResult();
-                                            if (document.exists()) {
-                                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                                Map<String, Object> newData = document.getData();
+                                            FirebaseUser mUser = mAuth.getInstance().getCurrentUser();
+                                            if (mUser.isEmailVerified()) {
+                                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                                    Map<String, Object> newData = document.getData();
 //                                newData.keySet();
-                                                newData.get("email");
-                                                ProfileUser prof = new ProfileUser(String.valueOf(newData.get("username")),(String)email,String.valueOf(newData.get("matricID")),(String)password);
-                                                fb.document(mAuth.getCurrentUser().getUid()).set(prof);
-                                                fb.document((String) newData.get("matricID")).set(prof);
-//                                                   username = String.valueOf(newData.get("email"));
+                                                    newData.get("email");
+                                                    ProfileUser prof = new ProfileUser(String.valueOf(newData.get("username")), (String) email, String.valueOf(newData.get("matricID")), (String) password);
+                                                    fb.document(mAuth.getCurrentUser().getUid()).set(prof);
+                                                    fb.document((String) newData.get("matricID")).set(prof);
+//                                                    Log.d(TAG, "get failed with ", task.getException());
+//                                                    Toast.makeText(LoginActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                Log.d(TAG, "No such document");
-                                                Toast.makeText(LoginActivity.this, "Wrong email! Enter again", Toast.LENGTH_SHORT).show();
-                                                return;
+                                                Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
                                             }
                                         } else {
-                                            Log.d(TAG, "get failed with ", task.getException());
-                                            Toast.makeText(LoginActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
-                                            return;
+                                            Toast.makeText(LoginActivity.this, "Wrong credentials! Check your credentials!", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
-                            } else{
-                                Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
+//                                                   username = String.valueOf(newData.get("email"));
+                            } else {
+                                Log.d(TAG, "No such document");
+                                Toast.makeText(LoginActivity.this, "Email not registered!!!\nTry again", Toast.LENGTH_SHORT).show();
+                                return;
                             }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Wrong credentials! Check your credentials!", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "get failed with ", task.getException());
+                            Toast.makeText(LoginActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
+                            return;
                         }
-                    };
+                    }
                 });
+
 //                                ProfileUser prof = new ProfileUser(,email, (String) newData.get("matricID"),password);
 //                                docRef.set(prof).addOnSuccessListener(suc->{
 //                                    Toast.makeText(LoginActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
@@ -276,7 +289,6 @@ public class LoginActivity extends AppCompatActivity {
     private boolean userLogin() {
         email = editTextLoginEmail.getText().toString().trim();
         password = editTextLoginPassword.getText().toString().trim();
-
         if ( email.isEmpty()){
             editTextLoginEmail.setError("Username is required!");
             editTextLoginEmail.requestFocus();

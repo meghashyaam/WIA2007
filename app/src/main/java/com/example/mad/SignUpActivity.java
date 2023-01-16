@@ -63,6 +63,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     String email;
     String matricID;
     String password;
+    String identifier;
 
     public void onClick(View view) {
         switch (view.getId()){
@@ -111,37 +112,84 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     return;
                 }
 //                    checkPreviousRecord(username);
-                fb.document(username).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                fb.document(identifier).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                Toast.makeText(SignUpActivity.this, "Username already exists!\\nSelect a different username!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "Email already exists!\nSelect a different email!", Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
-                                Log.d(TAG, "No such document");
-                                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                fb.document(matricID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()){
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot document = task.getResult();
+                                            if (document.exists()) {
+                                                Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                                Toast.makeText(SignUpActivity.this, "Matric ID already exists!\nLogin using your matric ID!", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            } else {
+                                                Log.d(TAG, "No such document");
+                                                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                                        if (task.isSuccessful()){
 //                        User user = new User(username,email,matricID);
-                                            Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
-                                            ProfileUser prof = new ProfileUser(username,email,matricID,password);
-                                            fb.document(prof.getUsername()).set(prof).addOnSuccessListener(suc->{
-                                                Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
-                                            }).addOnFailureListener(er->{
-                                                Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
-                                            });
-                                            mUser.sendEmailVerification();
-                                            return;
-                                        }else {
-                                            Toast.makeText(SignUpActivity.this, "Email id already exists!\\nSelect a different email!", Toast.LENGTH_SHORT).show();
+                                                            ProfileUser prof = new ProfileUser(username,email,matricID,password);
+                                                            ProfileUser profMID = new ProfileUser(username,email,matricID,password);
+                                                            fb.document(identifier).set(prof).addOnSuccessListener(suc->{
+//                                                                Toast.makeText(SignUpActivity.this, "", Toast.LENGTH_SHORT).show();
+                                                            }).addOnFailureListener(er->{
+                                                                Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                return;
+                                                            });
+                                                            fb.document(matricID).set(profMID).addOnSuccessListener(suc->{
+//                                                                Toast.makeText(SignUpActivity.this, "", Toast.LENGTH_SHORT).show();
+                                                            }).addOnFailureListener(er->{
+                                                                Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                return;
+                                                            });
+                                                            Toast.makeText(SignUpActivity.this,"Credentials have been registered successfully", Toast.LENGTH_SHORT).show();
+                                                            mAuth.getCurrentUser().sendEmailVerification();
+                                                            return;
+                                                        }else {
+                                                            Toast.makeText(SignUpActivity.this, "Email id already exists!\\nSelect a different email!", Toast.LENGTH_SHORT).show();
+                                                            return;
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        } else {
+                                            Log.d(TAG, "get failed with ", task.getException());
+                                            Toast.makeText(SignUpActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                     }
                                 });
+//                                Log.d(TAG, "No such document");
+//                                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                                        if (task.isSuccessful()){
+////                        User user = new User(username,email,matricID);
+//                                            Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
+//                                            ProfileUser prof = new ProfileUser(username,email,matricID,password);
+//                                            fb.document(identifier).set(prof).addOnSuccessListener(suc->{
+//                                                Toast.makeText(SignUpActivity.this, "Record is inserted", Toast.LENGTH_SHORT).show();
+//                                            }).addOnFailureListener(er->{
+//                                                Toast.makeText(SignUpActivity.this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
+//                                            });
+//                                            mAuth.getCurrentUser().sendEmailVerification();
+//                                            return;
+//                                        }else {
+//                                            Toast.makeText(SignUpActivity.this, "Email id already exists!\nSelect a different email!", Toast.LENGTH_SHORT).show();
+//                                            return;
+//                                        }
+//                                    }
+//                                });
                             }
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
@@ -283,6 +331,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             Toast.makeText(SignUpActivity.this, "Please agree to the Terms and Conditions", Toast.LENGTH_SHORT).show();
             okay = false;
             return okay;
+        }
+        identifier = "";
+        for (int i = 0; i < email.length(); i++) {
+            if (email.charAt(i)=='@' || email.charAt(i)=='.'){
+                identifier += "_";
+            }
+            else{
+                identifier += email.charAt(i);
+            }
         }
         return okay;
 

@@ -45,4 +45,3 @@ public class ProfileUser {
         this.matricID = matricID;
     }
 }
-

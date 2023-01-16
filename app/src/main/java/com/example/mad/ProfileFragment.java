@@ -3,6 +3,7 @@ package com.example.mad;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,18 +32,15 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment{
 
     TextView textName;
-
-    TextView kk;
-    TextView cat;
-    TextView date;
-    TextView time;
 
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
@@ -49,6 +48,9 @@ public class ProfileFragment extends Fragment{
     private FirebaseAuth.AuthStateListener authStateListener;
 
     public ProfileUser generalProfile;
+
+    public static CircleImageView imagePFP;
+    public static Uri UrI;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -58,6 +60,8 @@ public class ProfileFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
     }
 
 
@@ -66,6 +70,7 @@ public class ProfileFragment extends Fragment{
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        imagePFP = (CircleImageView) v.findViewById(R.id.imagePFP);
         textName =(TextView) v.findViewById(R.id.textName);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -75,10 +80,10 @@ public class ProfileFragment extends Fragment{
         gsc = GoogleSignIn.getClient(getActivity(),gso);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
 
-//        if (account!=null) {
-//            String Name = account.getDisplayName();
-//            textName.setText(Name);
-//        }
+        if (account!=null) {
+            String Name = account.getDisplayName();
+            textName.setText(Name);
+        }
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user!=null){
@@ -100,30 +105,6 @@ public class ProfileFragment extends Fragment{
             });
         }
 
-
-
-        kk = (TextView) v.findViewById(R.id.TVBookLocation);
-        cat = (TextView) v.findViewById(R.id.TVBookSpace);
-        date = (TextView) v.findViewById(R.id.TVBookDate);
-        time = (TextView) v.findViewById(R.id.TVBookTime);
-
-        String bookcat = getActivity().getIntent().getStringExtra("cat");
-        String bookloc = getActivity().getIntent().getStringExtra("kk");
-        String bookdate = getActivity().getIntent().getStringExtra("date");
-        String booktime = getActivity().getIntent().getStringExtra("time");
-
-        cat.setText(bookcat);
-        kk.setText(bookloc);
-        date.setText(bookdate);
-        time.setText(booktime);
-
-
-
-
-
-
-
-
 //        authStateListener = new FirebaseAuth.AuthStateListener() {
 //            @Override
 //            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -139,6 +120,7 @@ public class ProfileFragment extends Fragment{
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -148,7 +130,7 @@ public class ProfileFragment extends Fragment{
     @Override
     public void onPause() {
         super.onPause();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
 
     @Override
