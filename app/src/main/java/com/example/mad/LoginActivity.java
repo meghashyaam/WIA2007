@@ -13,6 +13,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -54,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authStateListener;
 
+    public ProfileUser generalProfile;
+
     String email;
     String password;
 //    @SuppressLint("MissingInflatedId")
@@ -73,9 +76,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user!=null){
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if(user.isEmailVerified()) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
+//                        firebaseAuth.signOut();
+                        return;
+                    }
                 }
             }
         };
@@ -220,6 +230,41 @@ public class LoginActivity extends AppCompatActivity {
 //                });
             }
         });
+    }
+
+    public void Bruthers(){
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+        DocumentReference docRef = db.collection("Login").document(mUser.getUid());
+        if (mUser.isEmailVerified()) {
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            Map<String, Object> newData = document.getData();
+//                                newData.keySet();
+                            newData.get("email");
+                            ProfileUser prof = new ProfileUser(String.valueOf(newData.get("username")),(String)email,String.valueOf(newData.get("matricID")),(String)password);
+                            fb.document(mAuth.getCurrentUser().getUid()).set(prof);
+                            fb.document((String) newData.get("matricID")).set(prof);
+//                                                   username = String.valueOf(newData.get("email"));
+                        } else {
+                            Log.d(TAG, "No such document");
+                            Toast.makeText(LoginActivity.this, "Wrong email! Enter again", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                        Toast.makeText(LoginActivity.this, "Some error occured", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            });
+        } else{
+            Toast.makeText(LoginActivity.this, "Check your email to verify your account!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

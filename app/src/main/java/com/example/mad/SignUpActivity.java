@@ -126,7 +126,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 //                        User user = new User(username,email,matricID);
                                             FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
                                             String UserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                            FirebaseAuth.getInstance().signOut();
                                             Toast.makeText(SignUpActivity.this, "user has been registered successfully", Toast.LENGTH_SHORT).show();
                                             ProfileUser prof = new ProfileUser(username,email,matricID,password);
                                             fb.document(UserId).set(prof).addOnSuccessListener(suc->{
@@ -157,7 +156,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         }
                     }
                 });
-                goToLogout();
+//                goToLogout();
             }
 
             private void goToLogout() {
