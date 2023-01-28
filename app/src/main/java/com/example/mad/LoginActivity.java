@@ -290,7 +290,7 @@ public class LoginActivity extends AppCompatActivity {
         email = editTextLoginEmail.getText().toString().trim();
         password = editTextLoginPassword.getText().toString().trim();
         if ( email.isEmpty()){
-            editTextLoginEmail.setError("Username is required!");
+            editTextLoginEmail.setError("Email is required!");
             editTextLoginEmail.requestFocus();
             return false;
         }
